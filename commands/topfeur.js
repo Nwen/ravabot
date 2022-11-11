@@ -9,18 +9,18 @@ module.exports = {
 		.setName('topfeur')
 		.setDescription('Leaderboard des Feur'),
 	async execute(interaction) {
-    const FeurModel = mongoose.model('feur-counts', feurCountSchema);
-    let x = await FeurModel.find({});
+    const FeurModel = mongoose.model('feur-counts', feurCountSchema)
+    let x = await FeurModel.find({}).sort({feurCount: -1});
 
     let message = 'Leaderboard\n'
 
     x.forEach((item, index) => {
         message += `<@${item._id}>`
-        message += " | ";
-        message += item.feurCount;
+        message += " | "
+        message += item.feurCount
         message += '\n'
       })
 
-	await interaction.reply(message);
+	await interaction.reply(message)
 	},
 };
