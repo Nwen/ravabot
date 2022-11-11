@@ -24,7 +24,6 @@ module.exports = {
     let x = await FeurModel.findOne({
       _id: interaction.user.id
     });
-    console.log(x.feurCount);
 
     const message = `Compteur de Feur de ${interaction.user} : ${x.feurCount}`
 		await interaction.reply(message);
