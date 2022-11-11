@@ -21,7 +21,7 @@ module.exports = {
       upsert: true
     });
   
-    let x = await Feur.findOne({
+    let x = await FeurModel.findOne({
       _id: interaction.user.id
     });
     console.log(x.feurCount);
