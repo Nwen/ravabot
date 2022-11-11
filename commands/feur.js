@@ -1,38 +1,32 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { feurCountSchema } = require('../data/feur-count-schema.js')
 const Discord = require('discord.js');
-const config = require("../data/feur.json");
-const fs = require("fs");
+const mongoose = require('mongoose')
+
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('feur')
 		.setDescription('Quoi ?'),
 	async execute(interaction) {
-        jsonReader("data/feur.json", (err, feur) => {
-            if (err) {
-              console.log("Error reading file:", err);
-              return;
-            }
-            // increase customer order count by 1
-            feur.feur += 1;
-            fs.writeFile("data/feur.json", JSON.stringify(feur), err => {
-              if (err) console.log("Error writing file:", err);
-            });
-          });
-		await interaction.reply( "Compteur de Feur : " + feur.feur );;
+    const FeurModel = mongoose.model('feur-counts', feurCountSchema);
+    await FeurModel.findOneAndUpdate({
+      _id: interaction.user.id
+      }, {
+      _id: interaction.user.id,
+      $inc : {
+        feurCount: 1
+      }
+      }, {
+      upsert: true
+    });
+  
+    let x = await Feur.findOne({
+      _id: interaction.user.id
+    });
+    console.log(x.feurCount);
+
+    const message = `Compteur de Feur de ${interaction.user} : ${x.feurCount}`
+		await interaction.reply(message);
 	},
 };
-
-function jsonReader(filePath, cb) {
-  fs.readFile(filePath, (err, fileData) => {
-    if (err) {
-      return cb && cb(err);
-    }
-    try {
-      const object = JSON.parse(fileData);
-      return cb && cb(null, object);
-    } catch (err) {
-      return cb && cb(err);
-    }
-  });
-}

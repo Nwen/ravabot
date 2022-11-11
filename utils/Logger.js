@@ -1,7 +1,5 @@
 const chalk = require("chalk");
 const dayjs = require("dayjs");
-// import chalk from 'chalk'
-// import dayjs from 'dayjs'
 
 const format = "{tstamp} {tag} {txt}\n";
 

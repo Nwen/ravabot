@@ -1,9 +1,13 @@
 const fs = require('node:fs');
-const path = require('node:path');
+const path = require('node:path')
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const mongoose = require('mongoose')
+const dotenv = require('dotenv'); dotenv.config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages
+] });
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -16,7 +20,12 @@ for (const file of commandFiles) {
 }
 
 client.once(Events.ClientReady, () => {
-	console.log('Ready!');
+	mongoose.connect(process.env.MONGO_URI, {
+		keepAlive: true
+	})
+		.then(()=> {console.log("MongoDB connected")})
+		.catch(error => console.log(error));
+	console.log('Ravabot enclanché !');
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -34,17 +43,4 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-//Si on est en local, besoin de token.json, sinon va chercher le token dans les variables config de Heroku. Un peu fait à la zob
-try {
-    if(fs.existsSync("./token.json")){
-        const token = require("./token.json");
-        const TOKEN = token.token
-        client.login(TOKEN).catch(console.error);
-    }
-    else {
-        const TOKEN = process.env.TOKEN
-        client.login(TOKEN).catch(console.error);
-    }
-} catch (err) {
-    console.error(err)
-}
+client.login(process.env.TOKEN).catch(console.error);
