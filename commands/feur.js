@@ -53,6 +53,6 @@ module.exports = {
     });
 
     const message = `Compteur de Feur de ${interaction.user} : ${x.feurCount}`
-		//await interaction.reply(message);
+		await interaction.reply(message);
 	},
 };
