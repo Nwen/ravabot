@@ -12,8 +12,12 @@ module.exports = {
             message.reply("Tg");
         }
 
-        if(message.content.toLowerCase().includes("quoi")){
-            message.reply("Feur");
+        if(message.content.toLowerCase().includes("quoi") || message.content.toLowerCase().includes("kwa")){
+            if(message.content.toLowerCase().includes("pourquoi")){
+                message.reply("Pour Feur");
+            } else {
+                message.reply("Feur");
+            }
             const FeurModel = mongoose.model('feur-counts', feurCountSchema);
             await FeurModel.findOneAndUpdate({
             _id: client.user.id
