@@ -6,6 +6,11 @@ const victimeSchema = new Schema({
     type: String,
     required: true
   },
+  ravage:
+  {
+    type: String,
+    required: true
+  },
   victime:
   {
     type: String,

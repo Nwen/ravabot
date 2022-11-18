@@ -33,10 +33,12 @@ module.exports = {
     if(victime!=undefined){
       console.log(victime)
       await VictimeModel.findOneAndUpdate({
-        _id: interaction.user.id,
+        _id: interaction.user.id + victime,
+        ravage: interaction.user.id,
         victime: victime
         }, {
-        _id: interaction.user.id,
+        _id: interaction.user.id + victime,
+        ravage: interaction.user.id,
         victime: victime,
         $inc : {
           feurCount: 1,
