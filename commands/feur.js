@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { feurCountSchema } = require('../data/feur-count-schema.js')
 const { victimeSchema } = require('../data/victime-shema.js')
-const Discord = require('discord.js');
+const { ActivityType } = require('discord.js');
 const mongoose = require('mongoose')
 
 
@@ -50,6 +50,10 @@ module.exports = {
 
     let x = await FeurModel.findOne({
       _id: interaction.user.id
+    });
+
+    client.user.setPresence({
+        activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
     });
 
     const message = `Compteur de Feur de ${interaction.user} : ${x.feurCount}`
