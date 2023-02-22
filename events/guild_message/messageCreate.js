@@ -14,12 +14,18 @@ module.exports = {
         if(message.content.includes(client.user.id)){
             message.reply("Tg");
         }
-
+        if(message.content.toLowerCase().includes("ligma")){
+            message.reply("Ligma Balls");
+        }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi")
             || message.content.toLowerCase().replace(regexPattern, "").includes("koi")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("k0i")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("qu01")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("koi")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("qu0i")
             || message.content.toLowerCase().replace(regexPattern, "").includes("qwa")
             || message.content.toLowerCase().replace(regexPattern, "").includes("kwa")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("qua"))
+            || message.content.toLowerCase().includes("qua "))
         {
             if(message.content.toLowerCase().includes("pourquoi")){
                 message.reply("Pour Feur");
