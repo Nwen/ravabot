@@ -7,7 +7,9 @@ const dotenv = require('dotenv'); dotenv.config();
 const client = new Client({ intents: [
 	GatewayIntentBits.Guilds,
 	GatewayIntentBits.GuildMessages,
-	GatewayIntentBits.MessageContent
+	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildModeration
+
 ] });
 
 ["CommandUtils", "EventUtils"].forEach((handler) => {

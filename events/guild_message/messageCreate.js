@@ -17,15 +17,30 @@ module.exports = {
         if(message.content.toLowerCase().includes("ligma")){
             message.reply("Ligma Balls");
         }
-        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("koi")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("k0i")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("qu01")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("koi")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("qu0i")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("qwa")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("kwa")
-            || message.content.toLowerCase().includes("qua "))
+        if(message.content.toLowerCase().includes("ligma")){
+            message.reply("Ligma Balls");
+        }
+        if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
+            var url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
+            if(url.includes("instagram")){
+                message.reply(url.slice(0, 12)+"dd"+url.slice(12));
+            } 
+            else if(url.includes("twitter")){
+                message.reply(url.slice(0, 8)+"fx"+url.slice(8));
+            }
+        }
+        if(message.content.toLowerCase().includes("quoicoubeh") 
+            || message.content.toLowerCase().includes("apagnan")
+            || message.content.toLowerCase().includes("cramptés")
+            || message.content.toLowerCase().includes("crampter")
+            || message.content.toLowerCase().includes("crampté")
+            || message.content.toLowerCase().includes("crampters")){
+            message.reply("Baise ta mère");
+            message.member.timeout(5 * 60 * 1000)
+                .then(() => console.log("Timed out member"))
+                .catch(console.log);
+        }
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi") && Math.random() < 0.10)
         {
             if(message.content.toLowerCase().includes("pourquoi")){
                 message.reply("Pour Feur");
