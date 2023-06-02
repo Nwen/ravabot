@@ -7,23 +7,21 @@ module.exports = {
     name: 'ready',
     once: true,
     async execute(client) {
-        // mongoose.connect(process.env.MONGO_URI, {
-        //     keepAlive: true
-        // })
-        //     .then(()=> {Logger.client("Succesfully connected to MongoDB")})
-        //     .catch(error => console.log(error));
-        // Logger.client("RAVABOT ENCLANCHÉ");
+        mongoose.connect(process.env.MONGO_URI, {
+            keepAlive: true
+        })
+            .then(()=> {Logger.client("Succesfully connected to MongoDB")})
+            .catch(error => console.log(error));
+        Logger.client("RAVABOT ENCLANCHÉ");
 
-        // const FeurModel = mongoose.model('feur-counts', feurCountSchema);
+        const FeurModel = mongoose.model('feur-counts', feurCountSchema);
 
-        // let x = await FeurModel.findOne({
-        //     _id: client.user.id
-        //     });
+        let x = await FeurModel.findOne({
+            _id: client.user.id
+            });
 
-        // client.user.setPresence({
-        //     activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
-        // });
-        
-
+        client.user.setPresence({
+            activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
+        });
     }
 }
