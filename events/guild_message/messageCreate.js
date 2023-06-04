@@ -20,10 +20,10 @@ module.exports = {
         if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
             let url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
             Logger.info(url[1]);
-            if(url[0].includes("instagram")){
+            if(url[0].includes(".instagram")){
                 message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
             } 
-            else if(url.includes("twitter")){
+            else if(url.includes(".twitter")){
                 message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
             }
         }
