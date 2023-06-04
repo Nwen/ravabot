@@ -23,7 +23,7 @@ module.exports = {
             if(url[0].includes(".instagram")){
                 message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
             } 
-            else if(url.includes(".twitter")){
+            else if(url.includes("/twitter")){
                 message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
             }
         }
