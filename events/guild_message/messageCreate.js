@@ -30,6 +30,7 @@ module.exports = {
         if(message.content.toLowerCase().replace(regexPattern, "").includes("quoicoub") 
             || message.content.toLowerCase().replace(regexPattern, "").includes("apagnan")
             || message.content.toLowerCase().replace(regexPattern, "").includes("apanyae")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("apanyan")
             || message.content.toLowerCase().replace(regexPattern, "").includes("kwacoub")
             || message.content.toLowerCase().replace(regexPattern, "").includes("crampter")
             || message.content.toLowerCase().replace(regexPattern, "").includes("crampté")
