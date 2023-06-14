@@ -28,6 +28,9 @@ module.exports = {
             }
         }
         if(message.content.toLowerCase().replace(regexPattern, "").includes("quoicoub") 
+            || message.content.toLowerCase().replace(regexPattern, "").includes("kwacoub")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("coubeh")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("coubé")
             || message.content.toLowerCase().replace(regexPattern, "").includes("apagnan")
             || message.content.toLowerCase().replace(regexPattern, "").includes("apanyae")
             || message.content.toLowerCase().replace(regexPattern, "").includes("apanyan")
@@ -37,9 +40,27 @@ module.exports = {
             || message.content.toLowerCase().replace(regexPattern, "").includes("cranpter")
             || message.content.toLowerCase().replace(regexPattern, "").includes("cranpté")){
             message.reply("Quoicoubaise ta mère.").catch(error => console.log(error));
-            message.member.timeout(5 * 60 * 1000)
+
+            const min = 1;
+            const max = 30;
+
+            const time = Math.random() * (max - min) + min;
+
+            message.member.timeout(time * 60 * 1000)
                 .then(() => console.log("Timed out member"))
                 .catch(console.log);
+        }
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("flipreset"))
+        {
+            message.reply("C'est ta mère que je flip reset");
+        }
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("démont") && Math.random() < 0.30)
+        {
+            message.reply("C'est ta mère que je démonte");
+        }
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulèv") && Math.random() < 0.30)
+        {
+            message.reply("C'est ta mère que je soulève");
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi") && Math.random() < 0.10)
         {
