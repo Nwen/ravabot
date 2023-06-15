@@ -7,6 +7,9 @@ module.exports = {
     name: 'ready',
     once: true,
     async execute(client) {
+
+        mongoose.set('strictQuery', true);
+
         mongoose.connect(process.env.MONGO_URI, {
             keepAlive: true
         })
@@ -18,10 +21,9 @@ module.exports = {
 
         let x = await FeurModel.findOne({
             _id: client.user.id
-            });
-
-        client.user.setPresence({
-            activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
-        });
+            }).then(()=>{client.user.setPresence({
+                activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
+            })})
+            .catch(error => console.log(error));
     }
 }
