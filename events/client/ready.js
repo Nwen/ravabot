@@ -8,7 +8,7 @@ module.exports = {
     once: true,
     async execute(client) {
 
-        mongoose.set('strictQuery', true);
+        mongoose.set('strictQuery', false);
 
         mongoose.connect(process.env.MONGO_URI, {
             keepAlive: true
