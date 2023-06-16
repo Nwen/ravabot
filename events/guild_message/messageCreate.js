@@ -23,7 +23,7 @@ module.exports = {
             if(url[0].includes(".instagram")){
                 message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
             } 
-            else if(url.includes("/twitter")){
+            else if(url.includes("twitter") && !url.includes("fxtwitter")){
                 message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
             }
         }
@@ -47,8 +47,8 @@ module.exports = {
             const time = Math.random() * (max - min) + min;
 
             message.member.timeout(time * 60 * 1000)
-                .then(() => console.log("Timed out member"))
-                .catch(console.log);
+                .then(() => Logger.info(`Apagnan ! ${message.member.user.tag} a été crampté pour ${time} min`))
+                .catch(Logger.err);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("flipreset"))
         {

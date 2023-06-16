@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Discord = require('discord.js');
+const Logger = require("../utils/Logger");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,9 +12,27 @@ module.exports = {
 				.setDescription('Temps du timeout (min)')),
 	async execute(interaction) {
         const temps = interaction.options.getNumber('temps');
-        interaction.member.timeout(temps * 60 * 1000)
-                .then(() => console.log("Timed out member"))
-                .catch(console.log);
+
+		let tempstimeout = temps * 60 * 1000
+		
+		if(tempstimeout <= 0)
+		{
+			const min = 1;
+			if(Math.random() >= 0.10)
+			{
+            	const max = 30;
+            	tempstimeout = Math.random() * (max - min) + min;
+			}
+			else 
+			{
+            	const max = 120;
+            	tempstimeout = Math.random() * (max - min) + min;
+			}
+		}
+
+        interaction.member.timeout(tempstimeout * 60 * 1000)
+                .catch(Logger.error);
+		Logger.info(`Suicide | Timed out member ${interaction.member.user.tag} for ${tempstimeout} min`)
 	await interaction.reply("So long !")
 	},
 };
