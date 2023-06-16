@@ -11,8 +11,6 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        
-
         if(message.channel.name.includes("pepper")){
             client.users.send('217279235021209600', `${message.author.username} : ${message.content}`);
             Logger.event(`${message.author.username} : ${message.content}`);

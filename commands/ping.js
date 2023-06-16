@@ -19,6 +19,6 @@ module.exports = {
             Logger.info(`FREEDOM | ${interaction.member.user.username} a libéré ${user.user.username}`);
         }
 
-	await interaction.reply({ content: '🏓 Pong!', ephemeral: true });
+	await interaction.reply({ content: '🏓 Pong!', ephemeral: true }).catch(Logger.error);
 	},
 };
