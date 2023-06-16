@@ -24,6 +24,6 @@ module.exports = {
             }).then(()=>{client.user.setPresence({
                 activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }],
             })})
-            .catch(error => console.log(error));
+            .catch(error => Logger.error(error));
     }
 }

@@ -32,7 +32,7 @@ module.exports = {
 
         interaction.member.timeout(tempstimeout * 60 * 1000)
                 .catch(Logger.error);
-		Logger.info(`Suicide | Timed out member ${interaction.member.user.tag} for ${tempstimeout} min`)
+		Logger.info(`Suicide | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`)
 	await interaction.reply("So long !")
 	},
 };

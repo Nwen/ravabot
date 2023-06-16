@@ -9,7 +9,7 @@ module.exports = {
 	async execute(interaction) {
 
         let x = Math.floor(Math.random()*6);
-        Logger.info(`Roulette | ${interaction.member.user.tag} | Number : ${x}`);
+        Logger.info(`Roulette | ${interaction.member.user.username} | Number : ${x}`);
         if(x === 0){
             interaction.reply("Perdu !");
             const min = 1;
@@ -18,7 +18,7 @@ module.exports = {
 
             interaction.member.timeout(tempstimeout *60*1000)
                     .catch(Logger.error);
-            Logger.info(`Roulette | Timed out member ${interaction.member.user.tag} for ${tempstimeout} min`)
+            Logger.info(`Roulette | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`)
 
         } else {
             interaction.reply("Rien ne se passe.");
