@@ -11,9 +11,9 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        if(message.channel.name.includes("pepper")){
-            client.users.send('217279235021209600', `${message.author.username} : ${message.content}`);
-            Logger.event(`${message.author.username} : ${message.content}`);
+        if(message.channel.name.includes("aide")){
+            client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
+            Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
         }
 
         if(message.content.includes(client.user.id)){
@@ -25,7 +25,7 @@ module.exports = {
             Logger.info(`Ligma balls ${message.author.username}`);
         }
         if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
-            Logger.info(`LINK : ${message.author.username}`);
+            Logger.info(`LINK : ${message.author.username} | ${message.channel.name}`);
             let url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
             Logger.info(url[1]);
             if(url[0].includes(".instagram")){
@@ -56,24 +56,31 @@ module.exports = {
 
             message.member.timeout(time * 60 * 1000)
                 .catch(Logger.error)
-                .then(() => Logger.info(`Apagnan | ${message.member.user.username} a été crampté pour ${time} min`));
+                .then(() => Logger.info(`Apagnan | ${message.author.username} a été crampté pour ${time} min`));
+            client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${time} min`);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("flipreset"))
         {
             message.reply("C'est ta mère que je flip reset");
-            Logger.info(`Flip reset ${message.author.username}`);
+            Logger.info(`Flip reset ${message.author.username} | ${message.channel.name}`);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("démont") && Math.random() < 0.30)
         {
             message.reply("C'est ta mère que je démonte");
-            Logger.info(`Démonte ${message.author.username}`);
+            Logger.info(`Démonte ${message.author.username} | ${message.channel.name}`);
         }
         if( (message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulèv")
         || message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulev")) 
         && Math.random() < 0.30)
         {
             message.reply("C'est ta mère que je soulève");
-            Logger.info(`Soulève ${message.author.username}`);
+            Logger.info(`Soulève ${message.author.username} | ${message.channel.name}`);
+        }
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulèv")
+        || message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulev"))
+        {
+            message.reply("C'est ta mère que je néo drift");
+            Logger.info(`Neo ${message.author.username} | ${message.channel.name}`);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi") && Math.random() < 0.10)
         {
@@ -82,7 +89,7 @@ module.exports = {
             } else {
                 message.reply("Feur").catch(error => console.log(error));
             }
-            Logger.info(`Feur ${message.author.username}`);
+            Logger.info(`Feur ${message.author.username} | ${message.channel.name}`);
             const FeurModel = mongoose.model('feur-counts', feurCountSchema);
             await FeurModel.findOneAndUpdate({
             _id: client.user.id
@@ -106,7 +113,7 @@ module.exports = {
 
         if(message.content.toLowerCase().includes("qword") || message.content.toLowerCase().includes("q-word")){
             message.reply("F word");
-            Logger.info(`Qword ${message.author.username}`);
+            Logger.info(`Qword ${message.author.username} | ${message.channel.name}`);
 
             const FeurModel = mongoose.model('feur-counts', feurCountSchema);
             await FeurModel.findOneAndUpdate({

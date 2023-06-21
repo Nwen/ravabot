@@ -11,14 +11,23 @@ module.exports = {
         let x = Math.floor(Math.random()*6);
         Logger.info(`Roulette | ${interaction.member.user.username} | Number : ${x}`);
         if(x === 0){
-            interaction.reply("Perdu !");
-            const min = 1;
-            const max = 120;
-            const tempstimeout = Math.random() * (max - min) + min;
+            if(Math.random() >= 0.20)
+			{
+                const min = 1;
+            	const max = 30;
+            	const tempstimeout = Math.random() * (max - min) + min;
+			}
+			else 
+			{
+                const min = 30;
+            	const max = 120;
+            	const tempstimeout = Math.random() * (max - min) + min;
+			}
 
             interaction.member.timeout(tempstimeout *60*1000)
                     .catch(Logger.error);
             Logger.info(`Roulette | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`)
+            client.users.send('217279235021209600', `${interaction.channel.name} | ${interaction.member.user.username} : ${tempstimeout} min`);
 
         } else {
             interaction.reply("Rien ne se passe.");
