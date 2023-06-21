@@ -11,17 +11,18 @@ module.exports = {
         let x = Math.floor(Math.random()*6);
         Logger.info(`Roulette | ${interaction.member.user.username} | Number : ${x}`);
         if(x === 0){
+            var tempstimeout = 0;
             if(Math.random() >= 0.20)
 			{
                 const min = 1;
             	const max = 30;
-            	const tempstimeout = Math.random() * (max - min) + min;
+            	tempstimeout = Math.random() * (max - min) + min;
 			}
 			else 
 			{
                 const min = 30;
             	const max = 120;
-            	const tempstimeout = Math.random() * (max - min) + min;
+            	tempstimeout = Math.random() * (max - min) + min;
 			}
 
             interaction.member.timeout(tempstimeout *60*1000)
