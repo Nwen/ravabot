@@ -6,7 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('roulette')
 		.setDescription('1 chance sur 6'),
-	async execute(interaction) {
+	async execute(client, interaction) {
 
         let x = Math.floor(Math.random()*6);
         Logger.info(`Roulette | ${interaction.member.user.username} | Number : ${x}`);
