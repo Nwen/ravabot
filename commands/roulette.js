@@ -26,9 +26,9 @@ module.exports = {
             interaction.reply("Perdu !");
             interaction.member.timeout(tempstimeout *60*1000)
                     .catch(Logger.error);
-            Logger.info(`Roulette | ${interaction.channel.name} | ${interaction.member.user.username} | Number : ${x}`).catch(Logger.error);
-            Logger.info(`Roulette | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`).catch(Logger.error);
-            interaction.client.users.send('217279235021209600', `${interaction.channel.name} | ${interaction.member.user.username} : ${tempstimeout} min`).catch(Logger.error);
+            Logger.info(`Roulette | ${interaction.channel.name} | ${interaction.member.user.username} | Number : ${x}`);
+            Logger.info(`Roulette | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`);
+            interaction.client.users.send('217279235021209600', `ROULETTE | ${interaction.channel.name} | Timed out ${interaction.member.user.username} : ${tempstimeout} min`).catch(Logger.error);
 
         } else {
             interaction.reply("Rien ne se passe.");

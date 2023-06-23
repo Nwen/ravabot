@@ -11,7 +11,7 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        if(message.channel.name.includes("aide")){
+        if(message.channel.name.includes("secret")||message.channel.name.includes("pepper")){
             client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
             Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
         }
@@ -31,7 +31,7 @@ module.exports = {
             if(url[0].includes(".instagram")){
                 message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
             } 
-            else if(url.includes("twitter") && !url.includes("fxtwitter")){
+            else if(url[0].includes("twitter") && !url.includes("fxtwitter")){
                 message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
             }
         }
@@ -57,7 +57,7 @@ module.exports = {
             message.member.timeout(time * 60 * 1000)
                 .catch(Logger.error)
                 .then(() => Logger.info(`Apagnan | ${message.author.username} a été crampté pour ${time} min`));
-            client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${time} min`);
+            client.users.send('217279235021209600', `Apagnan | ${message.channel.name} | ${message.author.username} a été crampté pour ${time} min`);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("flipreset"))
         {
@@ -76,10 +76,10 @@ module.exports = {
             message.reply("C'est ta mère que je soulève");
             Logger.info(`Soulève ${message.author.username} | ${message.channel.name}`);
         }
-        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulèv")
-        || message.content.toLowerCase().replace(regexPattern, "").replace().includes("soulev"))
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("neodrift")
+        || message.content.toLowerCase().replace(regexPattern, "").replace().includes("néodrift"))
         {
-            message.reply("C'est ta mère que je néo drift");
+            message.reply("Je néo drift dans ta daronne");
             Logger.info(`Neo ${message.author.username} | ${message.channel.name}`);
         }
         if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("quoi") && Math.random() < 0.10)
