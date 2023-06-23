@@ -43,9 +43,9 @@ module.exports = {
             || message.content.toLowerCase().replace(regexPattern, "").includes("apanyae")
             || message.content.toLowerCase().replace(regexPattern, "").includes("apanyan")
             || message.content.toLowerCase().replace(regexPattern, "").includes("kwacoub")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("crampter")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("crampte")
             || message.content.toLowerCase().replace(regexPattern, "").includes("crampté")
-            || message.content.toLowerCase().replace(regexPattern, "").includes("cranpter")
+            || message.content.toLowerCase().replace(regexPattern, "").includes("cranpte")
             || message.content.toLowerCase().replace(regexPattern, "").includes("cranpté")){
             message.reply("Quoicoubaise ta mère.").catch(error => console.log(error));
 
