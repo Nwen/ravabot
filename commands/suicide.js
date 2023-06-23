@@ -32,8 +32,8 @@ module.exports = {
 
         interaction.member.timeout(tempstimeout * 60 * 1000)
                 .catch(Logger.error);
-		Logger.info(`Suicide | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`);
-		client.users.send('217279235021209600', `${interaction.channel.name} | ${interaction.member.user.username} : ${tempstimeout} min`);
+		Logger.info(`Suicide | ${interaction.channel.name} |Timed out member ${interaction.member.user.username} for ${tempstimeout} min`).catch(Logger.error);
+		interaction.client.users.send('217279235021209600', `${interaction.channel.name} | ${interaction.member.user.username} : ${tempstimeout} min`).catch(Logger.error);
 	await interaction.reply("So long !")
 	},
 };
