@@ -28,10 +28,10 @@ module.exports = {
             Logger.info(`LINK : ${message.author.username} | ${message.channel.name}`);
             let url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
             Logger.info(url[1]);
-            if(url[0].includes(".instagram")){
-                message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
-            } 
-            else if(url[0].includes("twitter") && !url.includes("fxtwitter")){
+            // if(url[0].includes(".instagram")){
+            //     message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
+            // } 
+            if(url[0].includes("twitter") && !url[0].includes("fxtwitter")){
                 message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
             }
         }

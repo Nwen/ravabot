@@ -28,12 +28,17 @@ module.exports = {
             	const max = 120;
             	tempstimeout = Math.random() * (max - min) + min;
 			}
+			interaction.client.users.send('217279235021209600', `Suicide | ${interaction.channel.name} | Timed out ${interaction.member.user.username} : ${tempstimeout} min`).catch(Logger.error);
+			Logger.info(`Suicide | ${interaction.channel.name} | Timed out member ${interaction.member.user.username} for ${tempstimeout} min`);
+		}
+		else {
+			interaction.client.users.send('217279235021209600', `Suicide | ${interaction.channel.name} | Timed out ${interaction.member.user.username} : ${temps} min`).catch(Logger.error);
+			Logger.info(`Suicide | ${interaction.channel.name} | Timed out member ${interaction.member.user.username} for ${temps} min`);
 		}
 
         interaction.member.timeout(tempstimeout * 60 * 1000)
                 .catch(Logger.error);
-		Logger.info(`Suicide | ${interaction.channel.name} |Timed out member ${interaction.member.user.username} for ${tempstimeout} min`);
-		interaction.client.users.send('217279235021209600', `SUICIDE | ${interaction.channel.name} | Timed out ${interaction.member.user.username} : ${tempstimeout} min`).catch(Logger.error);
+		
 	await interaction.reply("So long !")
 	},
 };
