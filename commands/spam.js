@@ -25,7 +25,7 @@ module.exports = {
         const text = interaction.options.getString('message');
         const channel = interaction.channel;
 
-        if (repeat > 50 && !interaction.member.user.username("nwen")){
+        if (repeat > 50 && interaction.member.user.username != "nwen"){
             Logger.warn(`SPAM | ${interaction.channel.name} | ${interaction.member.user.username} | Trop de spam (${repeat})`)
             repeat = 50;
         }
