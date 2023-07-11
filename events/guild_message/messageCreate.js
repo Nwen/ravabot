@@ -31,8 +31,8 @@ module.exports = {
             // if(url[0].includes(".instagram")){
             //     message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
             // } 
-            if(url[0].includes("twitter") && !url[0].includes("fxtwitter")){
-                message.reply(url[0].slice(0, 8)+"fx"+url[0].slice(8));
+            if(url[0].includes("twitter") && !url[0].includes("xtwitter")){
+                message.reply(url[0].slice(0, 8)+"vx"+url[0].slice(8));
             }
         }
         if(message.content.toLowerCase().replace(regexPattern, "").includes("quoicoub") 
