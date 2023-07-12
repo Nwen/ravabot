@@ -29,7 +29,6 @@ module.exports = {
         });
 
         const triggerTime = getRandomHour();
-        triggerTime.setHours(17,4);
 
         const now = new Date();
         if(triggerTime.getTime()< now.getTime()){triggerTime.setHours(triggerTime.getHours() + 24)}
