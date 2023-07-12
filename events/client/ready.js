@@ -14,7 +14,7 @@ module.exports = {
             keepAlive: true
         })
             .then(()=> {Logger.client("Succesfully connected to MongoDB")})
-            .catch(error => console.log(error));
+            .catch(error => Logger.error(error));
         Logger.client("RAVABOT ENCLANCHÉ");
 
         const FeurModel = mongoose.model('feur-counts', feurCountSchema);
@@ -29,24 +29,25 @@ module.exports = {
         });
 
         const triggerTime = getRandomHour();
+        triggerTime.setHours(17,4);
 
         const now = new Date();
         if(triggerTime.getTime()< now.getTime()){triggerTime.setHours(triggerTime.getHours() + 24)}
-        Logger.event(`BeMusic | Next : ${triggerTime}`)
+        Logger.event(`BeMusic | Next : ${triggerTime}`);
 
 
         const firstTriggerAfterMs = triggerTime.getTime() - now.getTime();
 
         setTimeout(function(){
-            beMusicTrigger();
+            beMusicTrigger(client);
             setInterval(beMusicTrigger, 24 * 60 * 60 * 1000);
           }, firstTriggerAfterMs);
     }
 }
 
 function getRandomHour(){
-    const minh = 9;
-    const maxh = 22;
+    const minh = 7;
+    const maxh = 20;
     const hour = Math.random() * (maxh - minh) + minh;
     const minm = 0;
     const maxm = 59;
@@ -57,10 +58,10 @@ function getRandomHour(){
 
 function beMusicTrigger(client){
     Logger.event("BeMusic | Triggered")
-    client.channels.cache.get(`1128419322402967554`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
+    client.channels.cache.get(`847549409210007653`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
+        .catch(error => Logger.error(error));
 
     const triggerTime = getRandomHour();
-    triggerTime.setHours(22,7);
 
     const now = new Date();
     triggerTime.setHours(triggerTime.getHours() + 24); //set trigger to next day
@@ -69,7 +70,7 @@ function beMusicTrigger(client){
     const firstTriggerAfterMs = triggerTime.getTime() - now.getTime();
 
     setTimeout(function(){
-        beMusicTrigger();
+        beMusicTrigger(client);
         setInterval(beMusicTrigger, 24 * 60 * 60 * 1000);
         }, firstTriggerAfterMs);
 }
