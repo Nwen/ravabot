@@ -58,7 +58,7 @@ function getRandomHour(){
 
 function beMusicTrigger(client){
     Logger.event("BeMusic | Triggered")
-    client.channels.cache.get(`847549409210007653`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
+    client.channels.cache.get(`1128419322402967554`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
         .catch(error => Logger.error(error));
 
     const triggerTime = getRandomHour();
