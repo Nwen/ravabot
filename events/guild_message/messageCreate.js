@@ -11,7 +11,7 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        if(message.channel.name.includes("secret")||message.channel.name.includes("pepper")){
+        if(message.channel.name.includes("pepper")){
             client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
             Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
         }
@@ -25,12 +25,11 @@ module.exports = {
             Logger.info(`Ligma balls ${message.author.username}`);
         }
         if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
-            Logger.info(`LINK : ${message.author.username} | ${message.channel.name}`);
             let url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
-            Logger.info(url[1]);
+            Logger.info(`LINK : ${message.author.username} | ${message.channel.name} | ${url[1]}`);
             // if(url[0].includes(".instagram")){
             //     message.reply(url[0].slice(0, 12)+"dd"+url[0].slice(12));
-            // } 
+            // }
             if(url[0].includes("twitter") && !url[0].includes("xtwitter")){
                 message.reply(url[0].slice(0, 8)+"vx"+url[0].slice(8));
             }

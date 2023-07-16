@@ -3,10 +3,14 @@ const mongoose = require('mongoose')
 const { feurCountSchema } = require('../../data/feur-count-schema.js')
 const { ActivityType, time } = require('discord.js');
 
+let globalClient = undefined;
+
 module.exports = {
     name: 'ready',
     once: true,
     async execute(client) {
+
+        globalClient = client;
 
         mongoose.set('strictQuery', false);
 
@@ -28,19 +32,21 @@ module.exports = {
             activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }]
         });
 
-        const triggerTime = getRandomHour();
+        (function loop() {
 
-        const now = new Date();
-        if(triggerTime.getTime()< now.getTime()){triggerTime.setHours(triggerTime.getHours() + 24)}
-        Logger.event(`BeMusic | Next : ${triggerTime}`);
-
-
-        const firstTriggerAfterMs = triggerTime.getTime() - now.getTime();
-
-        setTimeout(function(){
-            beMusicTrigger(client);
-            setInterval(beMusicTrigger, 24 * 60 * 60 * 1000);
-          }, firstTriggerAfterMs);
+            const triggerTime = getRandomHour();
+        
+            const now = new Date();
+            triggerTime.setHours(triggerTime.getHours()); //set trigger to next day
+            Logger.event(`BeMusic | Next : ${triggerTime}`)
+        
+            const triggerMs = triggerTime.getTime() - now.getTime();
+        
+            setTimeout( () => {
+                    beMusicTrigger();
+                    loop();  
+            }, triggerMs);
+        }());
     }
 }
 
@@ -52,24 +58,13 @@ function getRandomHour(){
     const maxm = 59;
     const minute = Math.random() * (maxm - minm) + minm;
     const time = new Date(); time.setHours(hour, minute);
+    // const time = new Date(); time.setHours(time.getHours(), time.getMinutes(), time.getSeconds()+5);
     return time
 }
 
-function beMusicTrigger(client){
+
+function beMusicTrigger(){
     Logger.event("BeMusic | Triggered")
-    client.channels.cache.get(`1128419322402967554`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
+    globalClient.channels.cache.get(`1128419322402967554`).send(`<@&${'1128418876082888775'}> C'est l'heure de poster la dernière musique que vous avez écoutée !`)
         .catch(error => Logger.error(error));
-
-    const triggerTime = getRandomHour();
-
-    const now = new Date();
-    triggerTime.setHours(triggerTime.getHours() + 24); //set trigger to next day
-    Logger.event(`BeMusic | Next : ${triggerTime}`)
-
-    const firstTriggerAfterMs = triggerTime.getTime() - now.getTime();
-
-    setTimeout(function(){
-        beMusicTrigger(client);
-        setInterval(beMusicTrigger, 24 * 60 * 60 * 1000);
-        }, firstTriggerAfterMs);
 }
