@@ -1,5 +1,6 @@
 const Logger = require("../../utils/Logger");
 const { feurCountSchema } = require('../../data/feur-count-schema.js')
+const { optionsSchema } = require('../../data/options-schema.js')
 const { ActivityType } = require('discord.js');
 const mongoose = require('mongoose')
 
@@ -11,14 +12,24 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        if(message.channel.name.includes("pepper")){
-            client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
-            Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
-        }
+        // if(message.channel.name.includes("pepper")){
+        //     client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
+        //     Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
+        // }
 
         if(message.content.includes(client.user.id)){
             message.reply("Tg").catch(error => console.log(error));
             Logger.info(`TG ${message.author.username}`);
+        }
+        if(message.author.id === "217279235021209600"){
+            const optionModel = mongoose.model('options', optionsSchema);
+            let x = await optionModel.findOne({
+            _name: "luunarchapo"
+            });
+
+            if (x) {
+                message.reply("^^").catch(error => console.log(error));
+            }            
         }
         if(message.content.toLowerCase().includes("ligma")){
             message.reply("Ligma Balls").catch(error => console.log(error));
@@ -63,7 +74,7 @@ module.exports = {
             message.reply("C'est ta mère que je flip reset");
             Logger.info(`Flip reset ${message.author.username} | ${message.channel.name}`);
         }
-        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("démont") && Math.random() < 0.30)
+        if(message.content.toLowerCase().replace(regexPattern, "").replace().includes("démonte") && Math.random() < 0.30)
         {
             message.reply("C'est ta mère que je démonte");
             Logger.info(`Démonte ${message.author.username} | ${message.channel.name}`);

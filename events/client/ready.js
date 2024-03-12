@@ -24,13 +24,13 @@ module.exports = {
         const FeurModel = mongoose.model('feur-counts', feurCountSchema);
 
 
-        let x = await FeurModel.findOne({
-            _id: client.user.id
-            }).catch(error => Logger.error(error));
+        // let x = await FeurModel.findOne({
+        //     _id: client.user.id
+        //     }).catch(error => Logger.error(error));
 
-        client.user.setPresence({
-            activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }]
-        });
+        // client.user.setPresence({
+        //     activities: [{ name: `${x.feurCount} Feurs`, type: ActivityType.Playing }]
+        // });
 
         (function loop() {
 
