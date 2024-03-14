@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path')
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const dotenv = require('dotenv'); dotenv.config();
-
+const Logger = require("./utils/Logger");
 
 const client = new Client({ intents: [
 	GatewayIntentBits.Guilds,
@@ -36,9 +36,9 @@ client.on(Events.InteractionCreate, async interaction => {
 	try {
 		await command.execute(interaction);
 	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'La commande elle est pétée x(', ephemeral: true });
+		Logger.error(error);
+		await interaction.reply({ content: 'La commande elle est pétée x(', ephemeral: true }).catch(Logger.error);
 	}
 });
 
-client.login(process.env.TOKEN).catch(console.error);
+client.login(process.env.TOKEN).catch(Logger.error);

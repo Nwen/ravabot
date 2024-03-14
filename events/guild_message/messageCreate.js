@@ -22,17 +22,18 @@ module.exports = {
             Logger.info(`TG ${message.author.username}`);
         }
         if(message.author.id === "217279235021209600"){
+            Logger.event('Triggered ^^')
             const optionModel = mongoose.model('options', optionsSchema);
             let x = await optionModel.findOne({
             _name: "luunarchapo"
-            });
-
+            }).catch(Logger.error);
+            Logger.info(`DB OPTIONS : Found : ${x}`);
             if (x) {
-                message.reply("^^").catch(error => console.log(error));
+                message.reply("^^").catch(Logger.error);
             }            
         }
         if(message.content.toLowerCase().includes("ligma")){
-            message.reply("Ligma Balls").catch(error => console.log(error));
+            message.reply("Ligma Balls").catch(Logger.error);
             Logger.info(`Ligma balls ${message.author.username}`);
         }
         if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
