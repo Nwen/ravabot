@@ -25,9 +25,13 @@ module.exports = {
 
         const filter = { _name: option };
         const update = { value: value };
-        await optionModel.findOneAndUpdate(filter, update)
+        x = await optionModel.findOneAndUpdate(filter, update)
             .catch(Logger.error);
-
-        await interaction.reply({ content: `Modified option ${option} to ${value}`, ephemeral: true }).catch(Logger.error);
+        Logger.info(`Modified option : ${x}`);
+        if(!!x){
+            await interaction.reply({ content: `Modified option ${option} to ${value}`, ephemeral: true }).catch(Logger.error);
+        } else {
+            await interaction.reply({ content: `Option ${option} not found`, ephemeral: true }).catch(Logger.error);
+        }
 	},
 };

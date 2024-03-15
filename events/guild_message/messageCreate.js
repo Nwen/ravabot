@@ -12,24 +12,18 @@ module.exports = {
     async execute(client, message) {
         if (message.author.bot) return;
 
-        // if(message.channel.name.includes("pepper")){
-        //     client.users.send('217279235021209600', `${message.channel.name} | ${message.author.username} : ${message.content}`);
-        //     Logger.event(`${message.channel.name} | ${message.author.username} : ${message.content}`);
-        // }
-
         if(message.content.includes(client.user.id)){
             message.reply("Tg").catch(error => console.log(error));
             Logger.info(`TG ${message.author.username}`);
         }
-        if(message.author.id === "217279235021209600"){
-            Logger.event('Triggered ^^')
+        if(message.author.id === "181120771937009664"){ //luunar
             const optionModel = mongoose.model('options', optionsSchema);
             let x = await optionModel.findOne({
             _name: "luunarchapo"
             }).catch(Logger.error);
             Logger.info(`DB OPTIONS : Found : ${x}`);
-            if (x) {
-                message.reply("^^").catch(Logger.error);
+            if (x.value) {
+                message.reply("<:ChapeauChapeau:1143146901995278346>").catch(Logger.error);
             }            
         }
         if(message.content.toLowerCase().includes("ligma")){
