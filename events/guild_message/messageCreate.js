@@ -30,6 +30,11 @@ module.exports = {
             message.reply("Ligma Balls").catch(Logger.error);
             Logger.info(`Ligma balls ${message.author.username}`);
         }
+        if(message.content.toLowerCase().includes("skibidi")
+            || message.content.toLowerCase().includes("misery")){
+            message.reply("OH THE RIZZERY").catch(Logger.error);
+            Logger.info(`OH THE RIZZERY ${message.author.username}`);
+        }
         if(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/.test(message.content)){
             let url = message.content.match(/(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/);
             Logger.info(`LINK : ${message.author.username} | ${message.channel.name} | ${url[1]}`);
